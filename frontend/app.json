@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "todo_app",
+    "slug": "todo_app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}
