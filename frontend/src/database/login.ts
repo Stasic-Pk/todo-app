@@ -20,7 +20,9 @@ const login = async (password: string, email: string) => {
     }
 
     const data = await res.json();
-    // console.log("Response data:", data);
+
+    console.log("Response:", data);
+    return data;
   } catch (error) {
     console.error("Error sending POST request:", error);
   }

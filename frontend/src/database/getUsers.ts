@@ -14,7 +14,7 @@ const getUsers = async () => {
     }
 
     const users = await res.json();
-    // console.log("Response:", users);
+    console.log("Response:", users);
     return users;
   } catch (error) {
     console.error("Error fetching data:", error);

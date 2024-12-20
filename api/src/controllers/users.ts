@@ -29,18 +29,18 @@ export const getUserByToken = async (
     const token = req.cookies["SECRET"];
 
     if (!token) {
-      return res.status(401);
+      return res.sendStatus(401);
     }
 
     const user = await getUserBySessionToken(token);
 
     if (!user) {
-      return res.status(403);
+      return res.sendStatus(403);
     }
 
     return res.status(200).json(user);
   } catch (error) {
-    console.log(error);
+    console.log("Error fetching user by token:", error);
     return res.sendStatus(400);
   }
 };

@@ -25,7 +25,7 @@ const registration = async (
     }
 
     const data = await res.json();
-    // console.log("Response data:", data);
+    console.log("Response:", data);
   } catch (error) {
     console.error("Error sending POST request:", error);
   }

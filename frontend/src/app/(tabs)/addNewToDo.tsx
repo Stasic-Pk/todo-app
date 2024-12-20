@@ -1,14 +1,12 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
-import Index from "./src/app/index";
-
-export default function App() {
+const AddNewToDo = () => {
   return (
     <View style={styles.container}>
-      <Index />
+      <Text>new</Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -18,3 +16,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+export default AddNewToDo;

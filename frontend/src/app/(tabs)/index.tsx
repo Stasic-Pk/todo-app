@@ -1,10 +1,14 @@
 import { StyleSheet, View, Text } from "react-native";
+import Button from "../../components/button";
+import getUsers from "../../database/getUsers";
+import getCurrentUser from "../../database/getCurrentUser";
 
-const Home = () => {
+const List = () => {
   return (
     <View style={styles.container}>
       <Text>Home</Text>
-      <Text></Text>
+      <Button text={"getUsers"} onPress={() => getUsers()} />
+      <Button text={"getCurrentUser"} onPress={() => getCurrentUser()} />
     </View>
   );
 };
@@ -18,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default List;

@@ -15,10 +15,10 @@ const getCurrentUser = async () => {
     }
 
     const user = await res.json();
-    // console.log("Response:", user);
+    console.log("Response:", user);
     return user;
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.log("Error fetching data:", error);
   }
 };
 

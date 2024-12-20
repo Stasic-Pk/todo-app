@@ -5,25 +5,43 @@ import { useState } from "react";
 import Input from "../components/input";
 import Button from "../components/button";
 import login from "../database/login";
-import getUsers from "../database/getUsers";
 import getCurrentUser from "../database/getCurrentUser";
 
 const LoginPage = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter();
+  const [error, setError] = useState(false);
+
+  const logining = async () => {
+    const user = await getCurrentUser();
+    console.log(user);
+
+    if (!user) {
+      return setError(true);
+    }
+    router.replace("(tabs)");
+  };
 
   return (
     <View style={styles.container}>
       <Input value={email} setValue={setEmail} placeholder="email" />
       <Input value={password} setValue={setPassword} placeholder="password" />
-      <Button text={"Log-in"} onPress={() => login(password, email)} />
-      {/* <Button text={"getUsers"} onPress={() => getUsers()} />
-      <Button text={"getCurrentUser"} onPress={() => getCurrentUser()} />
-
+      {error === true ? (
+        <Text style={{ color: "red", fontSize: 15 }}>
+          something is not right
+        </Text>
+      ) : null}
+      <Button
+        text={"Log-in"}
+        onPress={async () => {
+          await login(password, email);
+          logining();
+        }}
+      />
       <TouchableOpacity onPress={() => router.push("register")}>
-        <Text style={{ color: "blue" }}>Registration</Text>
-      </TouchableOpacity> */}
+        <Text style={{ color: "blue" }}>registration</Text>
+      </TouchableOpacity>
     </View>
   );
 };

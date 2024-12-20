@@ -7,10 +7,20 @@ const layout = () => {
       <Tabs.Screen
         name="index"
         options={{
-          tabBarLabel: "Home",
-          headerTitle: "Home Screen",
+          tabBarLabel: "list",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome5 name="home" size={size} color={color} />
+            <FontAwesome5 name="list" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="addNewToDo"
+        options={{
+          tabBarLabel: "new",
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name="plus" size={size} color={color} />
           ),
         }}
       />
