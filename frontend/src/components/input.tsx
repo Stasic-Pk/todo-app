@@ -1,12 +1,13 @@
 import { TextInput, View, StyleSheet } from "react-native";
 
-const Input = ({ value, setValue, placeholder }: any) => {
+const Input = ({ value, setValue, placeholder, multiline, maxLength }: any) => {
   return (
     <View style={styles.input}>
       <TextInput
         onChangeText={(text: any) => setValue(text)}
         value={value}
         placeholder={placeholder}
+        multiline={multiline}
       />
     </View>
   );
@@ -15,6 +16,7 @@ const Input = ({ value, setValue, placeholder }: any) => {
 const styles = StyleSheet.create({
   input: {
     margin: 2.5,
+    minHeight: 0,
     width: 150,
     paddingLeft: 5,
     padding: 2,

@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
-import Input from "../../components/input";
+import { StyleSheet, View } from "react-native";
 import { useState } from "react";
+
+import Input from "../../components/input";
 import Button from "../../components/button";
 import updateUserData from "../../database/updateUserData";
 
@@ -11,7 +12,7 @@ const AddNewToDo = () => {
   return (
     <View style={styles.container}>
       <Input value={name} setValue={setName} placeholder={"todo name"} />
-      <Input value={value} setValue={setValue} placeholder={"todo"} />
+      <Input value={value} setValue={setValue} placeholder={"todo"} multiline={true}/>
 
       <Button
         text={"add"}
