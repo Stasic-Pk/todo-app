@@ -13,8 +13,7 @@ const Index = () => {
     if (!user) {
       return router.replace("login");
     }
-    // return router.replace("(tabs)");
-    return router.replace("login");
+    return router.replace("(tabs)");
   };
   logining();
 

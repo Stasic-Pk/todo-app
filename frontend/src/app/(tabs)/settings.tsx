@@ -1,6 +1,6 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
-const List = () => {
+const Settings = () => {
   return (
     <View style={styles.container}>
       <Text>null</Text>
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default List;
+export default Settings;

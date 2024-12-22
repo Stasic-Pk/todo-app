@@ -8,6 +8,7 @@ const UsersSchema = new mongoose.Schema({
     salt: { type: String, select: false },
     sessionToken: { type: String, select: false },
   },
+  todoList: [{ todoName: String, todo: String }],
 });
 
 export const UserModel = mongoose.model("User", UsersSchema);

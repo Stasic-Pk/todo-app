@@ -24,6 +24,16 @@ const layout = () => {
           ),
         }}
       />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          tabBarLabel: "settings",
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name="cog" size={size} color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 };
