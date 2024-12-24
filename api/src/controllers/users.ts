@@ -68,17 +68,8 @@ export const updateUser = async (
   try {
     const { id } = req.params;
     const { username } = req.body;
-    const { todoList } = req.body;
 
     if (!username) {
-      if (todoList) {
-        const user = await getUserById(id);
-
-        user.todoList[user.todoList.length] = todoList;
-        await user.save();
-
-        return res.status(200).json(user).end();
-      }
       return res.sendStatus(400);
     }
 
