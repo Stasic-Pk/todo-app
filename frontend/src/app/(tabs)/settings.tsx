@@ -1,9 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
-
+import { Link } from "expo-router";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+// lol
 const Settings = () => {
   return (
     <View style={styles.container}>
-      <Text>null</Text>
+      <TouchableOpacity>
+        <Link href={"https://github.com/Stasic-Pk/todo-app"}>
+          <Text style={{ color: "blue" }}>go to settings</Text>
+        </Link>
+      </TouchableOpacity>
     </View>
   );
 };

@@ -3,6 +3,9 @@ import { StyleSheet, View, Text, ScrollView } from "react-native";
 import { useNavigation, useSegments } from "expo-router";
 
 import getCurrentUser from "../../database/getCurrentUser";
+import Button from "../../components/button";
+import removeTodo from "../../database/removeTodo";
+import { reload } from "expo-router/build/global-state/routing";
 
 const List = () => {
   const [todoList, setTodoList] = useState([]);
@@ -13,6 +16,7 @@ const List = () => {
     const fetchData = async () => {
       try {
         const data = await getCurrentUser();
+        console.log("update!");
         setTodoList(data.todoList);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -34,15 +38,23 @@ const List = () => {
                   i === todoList.length - 1 ? styles.bottomTodo : styles.todo
                 }
               >
-                <Text key={todo.todoName} style={{ fontSize: 20 }}>
+                <Text key={i} style={{ fontSize: 20 }}>
                   {todo.todoName}
                 </Text>
                 <Text key={todo}>{todo.todo}</Text>
+                <Button
+                  key={"Button"}
+                  text={"delete task"}
+                  onPress={() => {
+                    console.log(todo);
+                    removeTodo(todo);
+                  }}
+                />
               </View>
             );
           })
         ) : (
-          <Text>Loading...</Text>
+          <Text>Loading...</Text> // fix it, if user dont have todo, it display
         )}
       </View>
     </ScrollView>

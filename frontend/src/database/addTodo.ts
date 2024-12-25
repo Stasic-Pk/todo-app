@@ -1,20 +1,16 @@
 import getCurrentUser from "./getCurrentUser";
 import currentIp from "./ip";
 
-const updateUserData = async (
-  username: string,
-  todoList: { todoName: string; todo: string }
-) => {
+const addTodo = async (todo: { todoName: string; todo: string }) => {
   try {
     const updatedData = {
-      username: username,
-      todoList: todoList,
+      todo: todo,
     };
 
-    const user = await getCurrentUser()
-    const id = user._id
+    const user = await getCurrentUser();
+    const id = user._id;
 
-    const res = await fetch(`http://${currentIp}:8080/users/${id}`, {
+    const res = await fetch(`http://${currentIp}:8080/addTodo/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -33,4 +29,4 @@ const updateUserData = async (
   }
 };
 
-export default updateUserData;
+export default addTodo;
