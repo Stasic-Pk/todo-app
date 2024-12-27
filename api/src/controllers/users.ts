@@ -84,3 +84,26 @@ export const updateUser = async (
     return res.sendStatus(400);
   }
 };
+
+export const logOutUser = async (
+  req: express.Request,
+  res: express.Response
+): Promise<any> => {
+  try {
+    const { id } = req.params;
+
+    const user = await getUserById(id);
+
+    if (!user) {
+      return res.sendStatus(404);
+    }
+
+    user.authentication.sessionToken = null;
+    await user.save();
+
+    return res.status(200).json(user).end();
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(400);
+  }
+};

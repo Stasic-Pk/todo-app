@@ -1,14 +1,28 @@
-import { Link } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-// lol
+import { StyleSheet, View } from "react-native";
+import { useRouter } from "expo-router/build/hooks";
+
+import Button from "../../components/button";
+import logOutUser from "../../database/logOutUser";
+import deleteUser from "../../database/deleteUser";
+
 const Settings = () => {
+  const router = useRouter()
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
-        <Link href={"https://github.com/Stasic-Pk/todo-app"}>
-          <Text style={{ color: "blue" }}>go to settings</Text>
-        </Link>
-      </TouchableOpacity>
+      <Button
+        text={"log-out"}
+        onPress={async () => {
+          await logOutUser();
+        }}
+      ></Button>
+      <Button
+        text={"delete account"}
+        onPress={async () => {
+          await deleteUser()
+          router.replace("login")
+        }}
+      ></Button>
     </View>
   );
 };

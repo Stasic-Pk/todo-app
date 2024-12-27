@@ -1,6 +1,6 @@
 import express from "express";
 
-import { deleteUser, getAllUsers, getUserByToken, updateUser } from "../controllers/users.js";
+import { deleteUser, getAllUsers, getUserByToken, logOutUser, updateUser } from "../controllers/users.js";
 import { isAuthenticated, isOwner } from "../middlewares/index.js";
 
 export default (router: express.Router) => {
@@ -9,4 +9,5 @@ export default (router: express.Router) => {
 
   router.delete("/users/:id", isAuthenticated, isOwner, deleteUser);
   router.patch("/users/:id", isAuthenticated, isOwner, updateUser);
+  router.patch("/logOut/:id", isAuthenticated, isOwner, logOutUser)
 };
