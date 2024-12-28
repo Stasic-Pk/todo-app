@@ -6,7 +6,7 @@ import logOutUser from "../../database/logOutUser";
 import deleteUser from "../../database/deleteUser";
 
 const Settings = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <View style={styles.container}>
@@ -14,13 +14,14 @@ const Settings = () => {
         text={"log-out"}
         onPress={async () => {
           await logOutUser();
+          router.replace("login");
         }}
       ></Button>
       <Button
         text={"delete account"}
         onPress={async () => {
-          await deleteUser()
-          router.replace("login")
+          await deleteUser();
+          router.replace("login");
         }}
       ></Button>
     </View>

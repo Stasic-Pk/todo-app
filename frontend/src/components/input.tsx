@@ -1,25 +1,23 @@
-import { TextInput, View, StyleSheet } from "react-native";
+import { TextInput, StyleSheet } from "react-native";
 
-const Input = ({ value, setValue, placeholder, multiline, maxLength }: any) => {
+const Input = ({ value, setValue, placeholder, multiline }: any) => {
   return (
-    <View style={styles.input}>
-      <TextInput
-        onChangeText={(text: any) => setValue(text)}
-        value={value}
-        placeholder={placeholder}
-        multiline={multiline}
-      />
-    </View>
+    <TextInput
+      onChangeText={(text: any) => setValue(text)}
+      value={value}
+      placeholder={placeholder}
+      multiline={multiline}
+      style={styles.input}
+    />
   );
 };
 
 const styles = StyleSheet.create({
   input: {
-    margin: 2.5,
+    margin: 3,
     minHeight: 0,
     width: 150,
-    paddingLeft: 5,
-    padding: 2,
+    padding: 12,
     borderRadius: 6,
     backgroundColor: "#e8e8e8",
   },

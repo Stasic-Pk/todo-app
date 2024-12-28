@@ -29,7 +29,7 @@ const LoginPage = () => {
       <Input value={password} setValue={setPassword} placeholder="password" />
       {error === true ? (
         <Text style={{ color: "red", fontSize: 15 }}>
-          something is not right
+          email and password isnt right
         </Text>
       ) : null}
       <Button
@@ -39,7 +39,10 @@ const LoginPage = () => {
           logining();
         }}
       />
-      <TouchableOpacity onPress={() => router.push("register")}>
+      <TouchableOpacity
+        onPress={() => router.push("register")}
+        style={{ marginTop: 10 }}
+      >
         <Text style={{ color: "blue" }}>registration</Text>
       </TouchableOpacity>
     </View>

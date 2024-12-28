@@ -16,7 +16,7 @@ const RegisterPage = () => {
       <Input value={email} setValue={setEmail} placeholder="email" />
       <Input value={password} setValue={setPassword} placeholder="password" />
       <Button
-        text={"login, email i parol"}
+        text={"register"}
         onPress={() => registration(username, password, email)}
       />
     </View>

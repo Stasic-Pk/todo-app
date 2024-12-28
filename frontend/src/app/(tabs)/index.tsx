@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text, ScrollView, Platform } from "react-native";
 import { useNavigation, useSegments } from "expo-router";
 
 import getCurrentUser from "../../database/getCurrentUser";
 import Button from "../../components/button";
 import removeTodo from "../../database/removeTodo";
-import { reload } from "expo-router/build/global-state/routing";
 
 const List = () => {
   const [todoList, setTodoList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const isFocused = useNavigation();
+  const OS = Platform.OS;
   useSegments();
 
   useEffect(() => {
@@ -18,6 +19,7 @@ const List = () => {
         const data = await getCurrentUser();
         console.log("update!");
         setTodoList(data.todoList);
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -27,7 +29,9 @@ const List = () => {
   }, [isFocused.isFocused()]);
 
   return (
-    <ScrollView>
+    <ScrollView
+      style={OS == "ios" ? styles.iosScroll : { backgroundColor: "#fff" }}
+    >
       <View style={styles.container}>
         {todoList.length !== 0 ? (
           todoList.map((todo, i) => {
@@ -38,23 +42,36 @@ const List = () => {
                   i === todoList.length - 1 ? styles.bottomTodo : styles.todo
                 }
               >
-                <Text key={i} style={{ fontSize: 20 }}>
-                  {todo.todoName}
-                </Text>
-                <Text key={todo}>{todo.todo}</Text>
-                <Button
-                  key={"Button"}
-                  text={"delete task"}
-                  onPress={() => {
-                    console.log(todo);
-                    removeTodo(todo);
-                  }}
-                />
+                {todo.todoName ? (
+                  <Text key={i} style={{ fontSize: 20 }}>
+                    {todo.todoName}
+                  </Text>
+                ) : null}
+                {todo.todo ? <Text key={todo}>{todo.todo}</Text> : null}
+                <View style={{ flexDirection: "row-reverse" }}>
+                  <Button
+                    key={"Button"}
+                    text={"remove"}
+                    onPress={() => {
+                      removeTodo(todo);
+                      setTodoList(
+                        todoList.filter(
+                          (element) => element._id !== todo._id,
+                          1
+                        )
+                      );
+                    }}
+                  />
+                </View>
               </View>
             );
           })
+        ) : isLoading === true ? (
+          <Text>Loading...</Text>
         ) : (
-          <Text>Loading...</Text> // fix it, if user dont have todo, it display
+          <Text style={{ paddingTop: "85%", fontSize: 24 }}>
+            You dont have to-do
+          </Text>
         )}
       </View>
     </ScrollView>
@@ -62,26 +79,26 @@ const List = () => {
 };
 
 const styles = StyleSheet.create({
+  iosScroll: {
+    backgroundColor: "#fff",
+    paddingTop: 60,
+  },
   container: {
-    flex: 1,
+    flex: 0,
     backgroundColor: "#fff",
     alignItems: "center",
   },
   todo: {
     backgroundColor: "#ededed",
     borderRadius: 6,
-    minHeight: 100,
     width: 300,
-    paddingTop: 6,
     padding: 10,
     marginTop: 12,
   },
   bottomTodo: {
     backgroundColor: "#ededed",
     borderRadius: 6,
-    minHeight: 100,
     width: 300,
-    paddingTop: 6,
     padding: 10,
     marginTop: 12,
     marginBottom: 12,
